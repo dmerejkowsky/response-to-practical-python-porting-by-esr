@@ -248,10 +248,10 @@ which means it's easy to redo the port once the changes are rebased
 (see above)
 
 About the porting itself
--------------------------
++++++++++++++++++++++++++
 
 Why ``six`` ?
-++++++++++++++
+~~~~~~~~~~~~~~
 
 
 ``reposurgeon`` and ``src`` do not use ``six`` to help Python3 porting,
@@ -306,7 +306,7 @@ I also thinks that using ``six`` leads to cleaner code.
           comment on it. It seems to be less popular than six, though.
 
 Use ``UTF-8`` everywhere
-+++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 I chose to always encode in UTF-8 instead of Latin-1.
 
@@ -323,7 +323,7 @@ Rationale:
 
 
 Re-assigning ``sys.stdout`` and ``sys.stderr``
-+++++++++++++++++++++++++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 I also don't recommend the trick that re-assigns ``sys.stdout`` and
 ``sys.stdin`` to use ``io.TextWrapper`` instead. Instead, make sure that
@@ -336,7 +336,7 @@ If you have to mock ``sys.stdout`` in your tests, do something like:
 
 
 Messing with shebangs
-+++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~
 
 There is a better way, that may seem overkill for single-file projects like
 ``reposurgeon`` or ``src``, but is quite handy for a project like ``qiBuild``
@@ -391,6 +391,11 @@ For extra convenience you can use `virtualenvwrapper
 <https://virtualenvwrapper.readthedocs.org/en/latest/>`_ to quickly
 switch from one virtualenv to an other.
 
+Messing with xrange, imap, izp
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. TODO (just use the Python3 version, we don't care about the loss of
+   perfs in Python2)
 
 Conclusion
 -----------
