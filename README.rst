@@ -305,6 +305,8 @@ I also thinks that using ``six`` leads to cleaner code.
           ``six`` you may want to consider. I did not use it so I can't really
           comment on it. It seems to be less popular than six, though.
 
+.. TODO: takl about python-future
+
 Use ``UTF-8`` everywhere
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
