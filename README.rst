@@ -305,7 +305,7 @@ I also thinks that using ``six`` leads to cleaner code.
           ``six`` you may want to consider. I did not use it so I can't really
           comment on it. It seems to be less popular than six, though.
 
-.. TODO: takl about python-future
+.. TODO: talk about python-future
 
 Use ``UTF-8`` everywhere
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -407,5 +407,11 @@ it was a fun exercise.
 
 I've left a comment in his blog post, discussion can continues on his blog.
 
-If you are curious, the ``six`` branch is available on ``github``, but
-please don't use it as history on this branch is frequently rewritten.
+If you are curious, the ``six`` branch is available on
+`my personal fork on github <https://github.com/dmerejkowsky/qibuild/commits/six>`_,
+but please don't use it as history on this branch is frequently rewritten.
+
+Also, note that there is just one big commit where all the porting happens.
+
+Initially there was one per step, but it's more convenient to
+have them squashed when rebasing.
