@@ -219,6 +219,22 @@ Instead, write something like:
     keys = my_dict.keys()
     keys = sorted(keys)
 
+An other gotcha is when you change the dictionary:
+
+.. code-block:: python
+
+    for key in my_dict.keys():
+        if something(key):
+            del my_dict[key]
+
+Here there's no choice but converting to a list:
+
+.. code-block:: python
+
+    for key in list(my_dict.keys()):
+        if something(key):
+            del my_dict[key]
+
 A note on continuous integration
 +++++++++++++++++++++++++++++++++
 
