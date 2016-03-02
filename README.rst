@@ -391,8 +391,18 @@ your string is UTF-8 encoded before sending it to ``sys.stdout`` or
 
 If you have to mock ``sys.stdout`` in your tests, do something like:
 
-.. TODO: add examples fro qibuild's six branch
+.. code-block:: python
 
+  @pytest.fixture
+  def stdout_wrapper():
+      if six.PY3:
+          return io.StringIO()
+      else:
+          return io.BytesIO()
+
+  def test_something(stdout_wrapper):
+      something_that_writes_to_stdout()
+      assert stdout_wrapper.getvalue() == "42"
 
 Messing with shebangs
 ~~~~~~~~~~~~~~~~~~~~~
