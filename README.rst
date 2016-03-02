@@ -492,19 +492,17 @@ I think it's a bad idea to use a deprecated name in the code. Remember,
 even if the goal is to be Python2/Python3 compatible, you are going
 to drop Python2 support at some point ....
 
-So I prefer using ``range()`` everywhere. There will be a small
-performance cost on ``Python2``, but as we all know
-"Premature optimization is the root of all evil".
-
-Feel free to use something like:
+As expected, ``six`` has a solution:
 
 .. code-block:: python
 
   import six
 
-  my_expensive_iterator = six.moves.range()
+  my_iterator = six.moves.range()
 
-if performance really is an issue.
+Note that I personally prefer using the built-in ``range()`` everywhere. There
+will be a small performance cost on ``Python2``, of course, but I'm fine with
+it.
 
 An other note, by default ``2to3`` will convert code looking like
 
@@ -519,9 +517,10 @@ to
     r = list(range(0, 1))
 
 I think this is a bad idea. It's very rare to do something *other*
-than iterating over a range. You can use ``2to3`` with
-``--nofix range`` to prevent this change to be automatically
-performed.
+than iterating over a range.
+
+You can use ``2to3`` with ``--nofix range`` to prevent this change from being
+automatically performed.
 
 
 Conclusion
