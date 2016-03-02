@@ -174,6 +174,51 @@ you should make sure when porting to Python3, to not use the
         test_something_that_should_throw()
     assert "something" in e.args[0]
 
+
+Dictionaries views
++++++++++++++++++++
+
+Let's say you have some code like this.
+
+.. code-block:: python
+
+    my_dict = { "a" : 1 }
+    keys = my_dict.keys()
+
+By default, when you run ``2to3``, your code will be changed to:
+
+.. code-block:: python
+
+    my_dict = { "a" : 1 }
+    keys = list(my_dict.keys())
+
+This is because in Python3, ``keys()`` returns a dictionary view,
+which is different from the list you get in Python2, and is
+*also* different from the iterator you get with ``iterkeys()``
+on Python2
+
+But in most cases, you just want to iterate over the
+keys, so I recommend using ``2to3`` with ``--nofix=dict``.
+
+Be careful though, code will blow up if you have something like:
+
+.. code-block:: python
+
+    my_dict = { "a" : 1 }
+    keys = my_dict.keys()
+    keys.sort()
+
+That's because dictionary views do not have a ``sort()``
+method.
+
+Instead, write something like:
+
+.. code-block:: python
+
+    my_dict = { "a" : 1 }
+    keys = my_dict.keys()
+    keys = sorted(keys)
+
 A note on continuous integration
 +++++++++++++++++++++++++++++++++
 
@@ -393,11 +438,53 @@ For extra convenience you can use `virtualenvwrapper
 <https://virtualenvwrapper.readthedocs.org/en/latest/>`_ to quickly
 switch from one virtualenv to an other.
 
-Messing with xrange, imap, izp
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Messing with xrange
+~~~~~~~~~~~~~~~~~~~
 
-.. TODO (just use the Python3 version, we don't care about the loss of
-   perfs in Python2)
+I also disagree with the following snippet:
+
+.. code-block:: python
+
+  try:
+      xrange
+  except NameError:
+      xrange = range
+
+I think it's a bad idea to use a deprecated name in the code. Remember,
+even if the goal is to be Python2/Python3 compatible, you are going
+to drop Python2 support at some point ....
+
+So I prefer using ``range()`` everywhere. There will be a small
+performance cost on ``Python2``, but as we all know
+"Premature optimization is the root of all evil".
+
+Feel free to use something like:
+
+.. code-block:: python
+
+  import six
+
+  my_expensive_iterator = six.moves.range()
+
+if performance really is an issue.
+
+An other note, by default ``2to3`` will convert code looking like
+
+.. code-block:: python
+
+    r = range(0, 1)
+
+to
+
+.. code-block:: python
+
+    r = list(range(0, 1))
+
+I think this is a bad idea. It's very rare to do something *other*
+than iterating over a range. You can use ``2to3`` with
+``--nofix range`` to prevent this change to be automatically
+performed.
+
 
 Conclusion
 -----------
