@@ -346,11 +346,23 @@ I also thinks that using ``six`` leads to cleaner code.
 * Lastly, it's the best way I know to handle code that use
   metaclasses while keeping a syntax compatible with Python2 and Python3
 
-.. note:: `pies <https://github.com/timothycrosley/pies>`_ is an alternative to
-          ``six`` you may want to consider. I did not use it so I can't really
-          comment on it. It seems to be less popular than six, though.
+Alternatives to six
+~~~~~~~~~~~~~~~~~~~
 
-.. TODO: talk about python-future
+Here are two alternatives I found, unfortunately *after* the port
+to Python3 started...
+
+I did not use them so I can't really comment on them. They
+seem to be far less used than ``six`` though.
+
+* `pies <https://github.com/timothycrosley/pies>`_ is an alternative to
+  ``six`` you may want to consider.
+  See `pie's README on github <https://github.com/timothycrosley/pies#how-does-pies-differ-from-six>`_
+  for the details.
+
+* `python-future <http://python-future.org/>`_ is also interesting,
+  since it contains tools that contrary to ``2to3,`` will generate
+  Python2/Python3 compatible code directly.
 
 Use ``UTF-8`` everywhere
 ~~~~~~~~~~~~~~~~~~~~~~~~~
