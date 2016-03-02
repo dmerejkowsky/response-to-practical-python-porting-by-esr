@@ -3,7 +3,9 @@ Response to ERS' "Pratical Python porting for system programmers"
 
 This text is a response to Eris S. Raymond and
 Peter A. Donis HOWTO on Python2 to Python3 porting
-for system programmers.
+for system programmers. (For brevity, I'll be using the
+phrase "ESR's howto" in the rest of this document. No offence,
+Peter)
 
 Go read the original text
 `here <http://www.catb.org/esr/faqs/practical-python-porting/>`_ first.
