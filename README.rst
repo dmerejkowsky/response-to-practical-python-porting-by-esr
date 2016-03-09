@@ -1,5 +1,5 @@
-Response to ERS' "Pratical Python porting for system programmers"
-=================================================================
+Response to ERS' "Pratical Python porting for systems programmers"
+==================================================================
 
 This text is a response to Eris S. Raymond and
 Peter A. Donis HOWTO on Python2 to Python3 porting
@@ -54,7 +54,7 @@ Where I agree
 -------------
 
 The "Why is this difficult" section is a good introduction to the
-real problems that occurs when Porting to Python3.
+real problems that occur when Porting to Python3.
 
 The "What doesn't work" also contains solid advice.
 
@@ -403,7 +403,7 @@ Re-assigning ``sys.stdout`` and ``sys.stderr``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 I also don't recommend the trick that re-assigns ``sys.stdout`` and
-``sys.stdin`` to use ``io.TextWrapper`` instead. Instead, make sure that
+``sys.stdin`` to use ``io.TextWrapper``. Instead, make sure that
 your string is UTF-8 encoded before sending it to ``sys.stdout`` or
 ``sys.stderr``.
 
